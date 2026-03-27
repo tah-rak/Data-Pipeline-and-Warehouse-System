@@ -1,34 +1,5 @@
 # End-to-End Data Pipeline
 
-[![Python](https://img.shields.io/badge/Python-3.10+-3776AB?logo=python&logoColor=white)](https://www.python.org/)
-[![.NET](https://img.shields.io/badge/.NET_8-512BD4?logo=dotnet&logoColor=white)](https://dotnet.microsoft.com/)
-[![C#](https://img.shields.io/badge/C%23-239120?logo=csharp&logoColor=white)](https://learn.microsoft.com/en-us/dotnet/csharp/)
-[![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
-[![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
-[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
-[![Airflow](https://img.shields.io/badge/Airflow-2.7.3-017CEE?logo=apacheairflow&logoColor=white)](https://airflow.apache.org/)
-[![Spark](https://img.shields.io/badge/Spark-3.5.3-E25A1C?logo=apachespark&logoColor=white)](https://spark.apache.org/)
-[![Kafka](https://img.shields.io/badge/Kafka-7.5.0-231F20?logo=apachekafka&logoColor=white)](https://kafka.apache.org/)
-[![Snowflake](https://img.shields.io/badge/Snowflake-29B5E8?logo=snowflake&logoColor=white)](https://www.snowflake.com/)
-[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-336791?logo=postgresql&logoColor=white)](https://www.postgresql.org/)
-[![MySQL](https://img.shields.io/badge/MySQL-8.0-4479A1?logo=mysql&logoColor=white)](https://www.mysql.com/)
-[![MongoDB](https://img.shields.io/badge/MongoDB-6.0-47A248?logo=mongodb&logoColor=white)](https://www.mongodb.com/)
-[![Redis](https://img.shields.io/badge/Redis-7-DC382D?logo=redis&logoColor=white)](https://redis.io/)
-[![MinIO](https://img.shields.io/badge/MinIO-C72E49?logo=minio&logoColor=white)](https://min.io/)
-[![InfluxDB](https://img.shields.io/badge/InfluxDB-2.7-22ADF6?logo=influxdb&logoColor=white)](https://www.influxdata.com/)
-[![Elasticsearch](https://img.shields.io/badge/Elasticsearch-8.11-005571?logo=elasticsearch&logoColor=white)](https://www.elastic.co/)
-[![MLflow](https://img.shields.io/badge/MLflow-2.9.2-0194E2?logo=mlflow&logoColor=white)](https://mlflow.org/)
-[![Prometheus](https://img.shields.io/badge/Prometheus-2.48-E6522C?logo=prometheus&logoColor=white)](https://prometheus.io/)
-[![Grafana](https://img.shields.io/badge/Grafana-10.2-F46800?logo=grafana&logoColor=white)](https://grafana.com/)
-[![Swagger](https://img.shields.io/badge/Swagger-85EA2D?logo=swagger&logoColor=black)](https://swagger.io/)
-[![Serilog](https://img.shields.io/badge/Serilog-2B2D42?logo=dotnet&logoColor=white)](https://serilog.net/)
-[![Dapper](https://img.shields.io/badge/Dapper_ORM-512BD4?logo=nuget&logoColor=white)](https://github.com/DapperLib/Dapper)
-[![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)](https://www.docker.com/)
-[![Kubernetes](https://img.shields.io/badge/Kubernetes-326CE5?logo=kubernetes&logoColor=white)](https://kubernetes.io/)
-[![Terraform](https://img.shields.io/badge/Terraform-7B42BC?logo=terraform&logoColor=white)](https://www.terraform.io/)
-[![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?logo=githubactions&logoColor=white)](https://github.com/features/actions)
-[![Helm](https://img.shields.io/badge/Helm-0F1689?logo=helm&logoColor=white)](https://helm.sh/)
-[![Argo CD](https://img.shields.io/badge/Argo_CD-EF7B4D?logo=argo&logoColor=white)](https://argoproj.github.io/cd/)
 
 A **production-ready, fully containerized data platform** with batch ingestion, real-time streaming, a star-schema data warehouse, ML experiment tracking, a .NET 8 REST API, and full observability -- all orchestrated through **20 Docker services** managed by a single `docker compose` stack.
 
@@ -283,24 +254,6 @@ terraform init && terraform plan && terraform apply
 
 Includes: VPC with public/private subnets, NAT Gateway, EKS with autoscaling nodes, RDS PostgreSQL (encrypted, multi-AZ), S3 data lake (versioned, encrypted, lifecycle policies), 3 security groups.
 
-## Service URLs
-
-| Service | URL | Credentials |
-|---------|-----|-------------|
-| **Airflow UI** | [http://localhost:8080](http://localhost:8080) | `admin` / `airflow_admin_2024` |
-| **Grafana** | [http://localhost:3000](http://localhost:3000) | `admin` / `admin_secret_2024` |
-| **MinIO Console** | [http://localhost:9001](http://localhost:9001) | `minio` / `minio_secret_2024` |
-| **MLflow UI** | [http://localhost:5001](http://localhost:5001) | -- |
-| **Spark Master UI** | [http://localhost:8081](http://localhost:8081) | -- |
-| **Swagger (.NET API)** | [http://localhost:5000/swagger](http://localhost:5000/swagger) | -- |
-| **Prometheus** | [http://localhost:9090](http://localhost:9090) | -- |
-| **Elasticsearch** | [http://localhost:9200](http://localhost:9200) | -- |
-| **Kafka** | `localhost:9092` | -- |
-| **PostgreSQL** | `localhost:5432` | `pipeline_user` / `pipeline_secret_2024` |
-| **MySQL** | `localhost:3306` | `pipeline_user` / `pipeline_secret_2024` |
-| **MongoDB** | `localhost:27017` | -- |
-| **Redis** | `localhost:6379` | -- |
-| **InfluxDB** | [http://localhost:8086](http://localhost:8086) | -- |
 
 ## API Documentation (.NET 8 Backend)
 
@@ -323,27 +276,6 @@ graph LR
     GC --> Atlas
     CC --> GitHub
 ```
-
-### Endpoints (16 routes)
-
-| Method | Endpoint | Controller | Description |
-|--------|----------|------------|-------------|
-| `POST` | `/api/batch/ingest` | BatchController | Extract MySQL → validate → upload MinIO → trigger Airflow |
-| `POST` | `/api/stream/produce` | StreamingController | Produce message to Kafka topic |
-| `POST` | `/api/stream/run` | StreamingController | Trigger streaming monitoring DAG |
-| `POST` | `/api/warehouse/transform` | WarehouseController | Trigger Snowflake warehouse ETL |
-| `GET` | `/api/warehouse/health` | WarehouseController | Check warehouse + Snowflake connectivity |
-| `GET` | `/api/warehouse/snowflake/status` | WarehouseController | Snowflake config status + schema info |
-| `GET` | `/api/warehouse/aggregations/daily-orders` | WarehouseController | Daily order aggregations |
-| `GET` | `/api/warehouse/pipeline-runs` | WarehouseController | Pipeline run history |
-| `POST` | `/api/governance/lineage` | GovernanceController | Register data lineage in Atlas |
-| `POST` | `/api/ml/run` | MLController | Create MLflow experiment run |
-| `POST` | `/api/ci/trigger` | CIController | Dispatch GitHub Actions workflow |
-| `GET` | `/api/monitor/health` | MonitoringController | Aggregated health of all services |
-| `GET` | `/health` | Built-in | Full health check (6 dependency checks) |
-| `GET` | `/health/ready` | Built-in | Readiness probe (critical deps only) |
-| `GET` | `/health/live` | Built-in | Liveness probe (always 200) |
-| `GET` | `/swagger` | Swashbuckle | Interactive API documentation |
 
 ### Backend Architecture
 
@@ -560,18 +492,6 @@ To customize, copy the example and edit:
 cp .env.example .env
 # Edit .env with your values
 ```
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/your-feature`)
-3. Commit your changes (`git commit -m 'Add your feature'`)
-4. Push to the branch (`git push origin feature/your-feature`)
-5. Open a Pull Request
-
-## License
-
-This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
 
 ---
 
