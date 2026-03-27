@@ -494,5 +494,3 @@ cp .env.example .env
 ```
 
 ---
-
-For questions or feedback, reach out on [GitHub](https://github.com/hoangsonww).
