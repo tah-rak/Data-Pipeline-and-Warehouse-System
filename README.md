@@ -1,4 +1,4 @@
-# End-to-End Data Pipeline
+# Data Pipeline 
 
 
 A **production-ready, fully containerized data platform** with batch ingestion, real-time streaming, a star-schema data warehouse, ML experiment tracking, a .NET 8 REST API, and full observability -- all orchestrated through **20 Docker services** managed by a single `docker compose` stack.
